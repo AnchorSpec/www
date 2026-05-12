@@ -1,17 +1,239 @@
 ---
-
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>AnchorSpec — OpenSpec without the telemetry</title>
+    <meta name="description" content="A minimal fork of OpenSpec with telemetry removed and the CLI rebranded. All upstream features preserved." />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --bg: #0d1117;
+        --surface: #161b22;
+        --border: #30363d;
+        --accent: #58a6ff;
+        --text: #e6edf3;
+        --muted: #8b949e;
+        --green: #3fb950;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .badge {
+        font-size: 0.7rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 4rem 2rem;
+        text-align: center;
+      }
+
+      .tag {
+        display: inline-block;
+        font-size: 0.8rem;
+        color: var(--green);
+        border: 1px solid var(--green);
+        padding: 0.2rem 0.75rem;
+        border-radius: 999px;
+        margin-bottom: 1.5rem;
+        opacity: 0.85;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        font-weight: 800;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.25rem;
+        max-width: 700px;
+      }
+
+      h1 span { color: var(--accent); }
+
+      .subtitle {
+        font-size: 1.15rem;
+        color: var(--muted);
+        max-width: 520px;
+        line-height: 1.65;
+        margin-bottom: 2.5rem;
+      }
+
+      .actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.65rem 1.4rem;
+        border-radius: 6px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: opacity 0.15s;
+      }
+      .btn:hover { opacity: 0.85; }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #0d1117;
+      }
+
+      .btn-secondary {
+        background: var(--surface);
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+
+      .install-block {
+        margin-top: 3.5rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.5rem;
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: 0.9rem;
+        color: var(--muted);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .install-block .prompt { color: var(--accent); user-select: none; }
+      .install-block code { color: var(--text); }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 5rem;
+        max-width: 800px;
+        width: 100%;
+      }
+
+      .feature {
+        background: var(--surface);
+        padding: 1.5rem;
+        text-align: left;
+      }
+
+      .feature-icon { font-size: 1.4rem; margin-bottom: 0.6rem; }
+      .feature h3 { font-size: 0.95rem; margin-bottom: 0.35rem; }
+      .feature p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 1.25rem 2rem;
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      footer a { color: var(--muted); }
+      footer a:hover { color: var(--text); }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="/">AnchorSpec</a>
+      <span class="badge">fork of OpenSpec</span>
+    </header>
+
+    <main>
+      <span class="tag">No telemetry. Ever.</span>
+
+      <h1>OpenSpec features.<br /><span>Zero tracking.</span></h1>
+
+      <p class="subtitle">
+        AnchorSpec is a clean fork of OpenSpec with all telemetry removed and
+        the CLI rebranded to <code>anchorspec</code>. Every upstream feature is
+        preserved — just without the phone-home.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="https://github.com/AnchorSpec/anchorspec">
+          View on GitHub
+        </a>
+        <a class="btn btn-secondary" href="https://github.com/AnchorSpec/anchorspec/releases">
+          Releases
+        </a>
+      </div>
+
+      <div class="install-block">
+        <span class="prompt">$</span>
+        <code>npm install -g anchorspec</code>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🔇</div>
+          <h3>Telemetry stripped</h3>
+          <p>All analytics, usage reporting, and outbound tracking removed at the source.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">⚡</div>
+          <h3>Full feature parity</h3>
+          <p>Every OpenSpec capability is intact — validation, code generation, diffing, and more.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🔁</div>
+          <h3>Stays current</h3>
+          <p>Tracks upstream OpenSpec releases so you always get the latest features.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📦</div>
+          <h3>Drop-in replacement</h3>
+          <p>Same CLI surface as OpenSpec. Swap the binary, keep your existing scripts and workflows.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>AnchorSpec is an independent fork, not affiliated with the OpenSpec project. &nbsp;·&nbsp; <a href="https://github.com/AnchorSpec">GitHub</a></p>
+    </footer>
+  </body>
 </html>

@@ -3,6 +3,5 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://anchorspec.github.io',
-  base: '/www',
+  site: 'https://www.anchorspec.com',
 });

@@ -54,6 +54,20 @@
         border-radius: 999px;
       }
 
+      .header-nav {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .header-nav a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+      .header-nav a:hover { color: var(--text); }
+
       main {
         flex: 1;
         display: flex;
@@ -180,6 +194,9 @@
   <body>
     <header>
       <a class="logo" href="/">⚓️ AnchorSpec</a>
+      <nav class="header-nav">
+        <a href="/www/docs/v1.3.1/getting-started">Docs</a>
+      </nav>
     </header>
 
     <main>

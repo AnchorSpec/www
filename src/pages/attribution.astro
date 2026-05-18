@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Attribution — AnchorSpec"
+  description="Open source attribution and license notices for AnchorSpec."
+>
+  <section style="padding:72px 0 80px;">
+    <div class="container-narrow">
+
+      <div style="margin-bottom:40px;">
+        <div class="eyebrow">Legal</div>
+        <h1 style="font-size:clamp(28px,4vw,44px);margin-top:10px;">Open Source Attribution</h1>
+        <p style="color:var(--text-2);margin-top:14px;max-width:560px;font-size:16px;line-height:1.6;">
+          AnchorSpec is a fork of OpenSpec. We're grateful to the OpenSpec contributors for
+          building the foundation this project builds on.
+        </p>
+      </div>
+
+      <!-- OpenSpec -->
+      <div class="card attr-block" style="padding:28px;margin-bottom:20px;">
+        <div style="display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;">
+          <div style="flex:1 1 300px;">
+            <h2 style="font-size:18px;margin-bottom:6px;">OpenSpec</h2>
+            <p style="color:var(--text-2);font-size:14px;margin:0 0 14px;">
+              The core spec framework that AnchorSpec is forked from. AnchorSpec removes
+              upstream telemetry and rebrands the CLI, but preserves full feature parity
+              and tracks upstream releases.
+            </p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <a
+                class="pill"
+                href="https://github.com/Fission-AI/OpenSpec"
+                target="_blank"
+                rel="noreferrer"
+                style="text-decoration:none;"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.3-3.2-.1-.3-.6-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+                Fission-AI/OpenSpec
+              </a>
+              <span class="pill" style="background:rgba(110,224,176,0.07);border-color:rgba(110,224,176,0.25);color:var(--success);">MIT License</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="license-block" style="margin-top:22px;">
+          <div class="eyebrow" style="margin-bottom:10px;">License Notice</div>
+          <pre class="license-text">MIT License
+
+Copyright (c) 2024 OpenSpec Contributors (https://github.com/Fission-AI/OpenSpec)
+Copyright (c) 2025–2026 AnchorSpec Contributors (https://github.com/AnchorSpec/AnchorSpec)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</pre>
+        </div>
+      </div>
+
+      <!-- Astro -->
+      <div class="card attr-block" style="padding:28px;margin-bottom:20px;">
+        <div style="display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;">
+          <div style="flex:1 1 300px;">
+            <h2 style="font-size:18px;margin-bottom:6px;">Astro</h2>
+            <p style="color:var(--text-2);font-size:14px;margin:0 0 14px;">
+              This website is built with Astro, an open-source web framework.
+            </p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <a
+                class="pill"
+                href="https://github.com/withastro/astro"
+                target="_blank"
+                rel="noreferrer"
+                style="text-decoration:none;"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.3-3.2-.1-.3-.6-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+                withastro/astro
+              </a>
+              <span class="pill" style="background:rgba(110,224,176,0.07);border-color:rgba(110,224,176,0.25);color:var(--success);">MIT License</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Note -->
+      <p style="color:var(--text-3);font-size:13px;margin-top:32px;line-height:1.6;">
+        AnchorSpec is an independent project and is not affiliated with or endorsed by
+        Fission AI or the OpenSpec project.
+        Full source is available at
+        <a href="https://github.com/AnchorSpec/AnchorSpec">github.com/AnchorSpec/AnchorSpec</a>.
+      </p>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .attr-block pre.license-text {
+    margin: 0;
+    padding: 16px 18px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--text-2);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+</style>

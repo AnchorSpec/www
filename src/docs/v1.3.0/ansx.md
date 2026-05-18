@@ -1,7 +1,5 @@
 # ANSX Workflow
 
-> Feedback welcome on [Discord](https://discord.gg/YctCnvvshC).
-
 ## What Is It?
 
 ANSX is now the standard workflow for AnchorSpec.
@@ -656,4 +654,4 @@ anchorspec schema validate my-workflow
 
 This is rough. That's intentional — we're learning what works.
 
-Found a bug? Have ideas? Join us on [Discord](https://discord.gg/YctCnvvshC) or open an issue on [GitHub](https://github.com/AnchorSpec/AnchorSpec/issues).
+Found a bug? Have ideas? Open an issue on [GitHub](https://github.com/AnchorSpec/AnchorSpec/issues).

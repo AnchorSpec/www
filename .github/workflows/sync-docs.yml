@@ -1,0 +1,88 @@
+name: Sync docs from AnchorSpec
+
+# Fired by AnchorSpec/AnchorSpec's release-prepare.yml via repository_dispatch
+# once a release actually publishes (see that repo's CLAUDE.md "Documentation"
+# and this workflow's counterpart step). workflow_dispatch exists for manual
+# runs / backfilling a version that was missed.
+on:
+  repository_dispatch:
+    types: [anchorspec-release]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'AnchorSpec version to sync (e.g. 1.4.0)'
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-docs
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.repository == 'AnchorSpec/www'
+    runs-on: ubuntu-latest
+    steps:
+      # Same GitHub App as AnchorSpec/AnchorSpec's release workflow, installed
+      # on this repo too so it can push a branch and open a PR here.
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          app-id: ${{ vars.RELEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+
+      - id: vars
+        run: |
+          version="${{ github.event.client_payload.version || inputs.version }}"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout AnchorSpec docs at release tag
+        uses: actions/checkout@v4
+        with:
+          repository: AnchorSpec/AnchorSpec
+          ref: v${{ steps.vars.outputs.version }}
+          sparse-checkout: docs
+          path: anchorspec-src
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Sync docs into www
+        run: node scripts/add-doc-version.mjs "${{ steps.vars.outputs.version }}" anchorspec-src/docs
+
+      - name: Open PR
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          VERSION: ${{ steps.vars.outputs.version }}
+        run: |
+          set -euo pipefail
+          rm -rf anchorspec-src
+
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No changes for v$VERSION (already synced?) — nothing to do."
+            exit 0
+          fi
+
+          branch="docs/v$VERSION"
+          git config user.name "anchorspec-release[bot]"
+          git config user.email "anchorspec-release[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add src/docs/"v$VERSION" src/pages/docs
+          git commit -m "docs: add v$VERSION"
+          git push -u origin "$branch" --force
+
+          if gh pr list --head "$branch" --json number --jq 'length' | grep -qx 0; then
+            gh pr create --title "docs: add v$VERSION" \
+              --body "Automated sync from [AnchorSpec v$VERSION](https://github.com/AnchorSpec/AnchorSpec/releases/tag/v$VERSION)." \
+              --head "$branch" --base main
+          else
+            echo "PR for $branch already open — pushed update to it."
+          fi

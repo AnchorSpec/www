@@ -1,5 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const docFiles = import.meta.glob('../docs/**/*.md');
+const latestVersion = Object.keys(docFiles)
+  .map(p => p.match(/\/docs\/v([\d.]+)\//)?.[1])
+  .filter((v): v is string => Boolean(v))
+  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+  .at(-1);
 ---
 
 <BaseLayout
@@ -17,7 +24,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <span class="pill" style="margin-bottom:26px;">
         <span class="dot"></span>
-        v1.3.1 — tracks upstream OpenSpec releases
+        v{latestVersion} — tracks upstream OpenSpec releases
       </span>
 
       <h1 style="max-width:820px;margin:20px auto 0;">
@@ -31,7 +38,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </p>
 
       <div style="display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap;">
-        <a class="btn btn-primary" href="/docs/v1.3.1/getting-started">
+        <a class="btn btn-primary" href="/docs/">
           Get started
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>

@@ -230,5 +230,11 @@ h3 { font-size: 18px; font-weight: 600; }
 @media (max-width: 780px) {
   .features { grid-template-columns: 1fr; }
   .workflow { grid-template-columns: 1fr; }
-  .nav .links a:not(.nav-cta) { display: none; }
+}
+
+@media (max-width: 480px) {
+  .nav-inner { padding: 0 14px; gap: 8px; }
+  .nav .brand span:last-child { display: none; }
+  .nav .links { gap: 0; }
+  .nav .links a { padding: 8px 8px; font-size: 13px; }
 }
